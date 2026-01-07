@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary / Page Background -> Now White */
+    --background: 0 0% 100%;
+    /* Main Text -> Now Navy Blue (#1F1E5E) */
+    --foreground: 241 52% 25%;
+
+    /* Cards & Surfaces -> Now White */
+    --card: 0 0% 100%;
+    /* Card Text -> Navy Blue */
+    --card-foreground: 241 52% 25%;
+
+    /* Popovers (Dropdowns, Tooltips) */
+    --popover: 0 0% 100%;
+    --popover-foreground: 241 52% 25%;
+
+    /* Primary Actions (Buttons, Active States) -> Now Navy Blue */
+    --primary: 241 52% 25%;
+    /* Text on Primary Buttons -> White */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary Actions (Muted buttons) -> Light Grayish Blue */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 241 52% 25%;
+
+    /* Muted Text / Placeholders */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Borders / Inputs -> Light Gray for subtle separation */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 241 52% 25%;
+
+    --radius: 0rem; /* Kept 0rem for Chiseled/Professional look */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading uppercase;
+    letter-spacing: 0.05em;
+    /* Updated text shadow to be subtler on white background */
+    text-shadow: none;
+  }
+}
+
+@layer utilities {
+  .corner-accent {
+    position: relative;
+    border: 1px solid var(--border);
+  }
+
+  /* Creates small chiseled corner details */
+  .corner-accent::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 10px;
+    height: 10px;
+    /* Uses the Accent Blue (#1A184D) for the corner detail */
+    border-top: 2px solid #1a184d;
+    border-left: 2px solid #1a184d;
+  }
+
+  /* Standard Card Style */
+  .glass-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Added subtle shadow for depth */
+    backdrop-filter: none;
+  }
+
+  /* Gradient Text Helper - Now uses Primary Navy */
+  .gradient-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: initial;
+    color: var(--primary); /* Navy Blue */
+    font-weight: 700;
+  }
+
+  /* Animation Utilities (Unchanged) */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
