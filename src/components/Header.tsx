@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // Added to detect current page
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,20 +9,17 @@ import { Button } from "@/components/ui/button";
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname(); // Get current route
+  const pathname = usePathname();
 
-  // Check if we are on the homepage
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // LOGIC: Use "Solid" style if we are NOT on home OR if we have scrolled
+  // Solid header when scrolled or not on homepage
   const useSolidStyle = !isHome || isScrolled;
 
   const navItems = [
@@ -32,45 +29,56 @@ export const Header = () => {
     { name: "How It Works", href: "/how-it-works" },
     { name: "Pricing", href: "/pricing" },
     { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/careers" },
   ];
 
-  // Dynamic Styles based on Page & Scroll State
+  /* ===== Dynamic Semantic Classes ===== */
+
   const textColor = useSolidStyle ? "text-foreground" : "text-white";
-  const navLinkColor = useSolidStyle
-    ? "text-foreground/80 hover:text-primary"
-    : "text-white/90 hover:text-white";
+  const navLinkColor = useSolidStyle ? "text-foreground" : "text-white";
+
   const logoBorderColor = useSolidStyle
-    ? "border-primary/20"
+    ? "border-primary-10"
     : "border-white/20";
+
   const underlineColor = useSolidStyle ? "bg-primary" : "bg-white";
 
-  // Button styles
   const buttonClass = useSolidStyle
-    ? "border-primary text-primary hover:bg-primary hover:text-white"
-    : "border-white/40 text-primary hover:bg-white";
+    ? "border-primary text-primary bg-primary text-white"
+    : "border-white/40 text-primary hover:bg-white hover:text-primary";
+
+  const headerStyle = useSolidStyle
+    ? "bg-white/95 border-b border-primary-10 shadow-glow backdrop-blur-md py-2"
+    : "bg-transparent py-4";
+
+  /* ===================================== */
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        useSolidStyle
-          ? "bg-white/95 border-b border-[#1F1E5E]/10 shadow-md backdrop-blur-md py-2" // Solid look
-          : "bg-transparent py-4" // Transparent look (Only on Home Top)
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerStyle}`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16 transition-all duration-300">
-          {/* Logo on left */}
+          {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div
-              className={`relative w-10 h-10 rounded-sm overflow-hidden border ${logoBorderColor} transition-transform group-hover:scale-105`}
+              className={`
+    relative w-11 h-11 
+    rounded-xl 
+    border ${logoBorderColor}
+    bg-primary
+    p-[2px]
+    shadow-sm
+    transition-all duration-300
+    group-hover:shadow-md
+  `}
             >
               <img
                 src="/logo.png"
                 alt="TenderLink Logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain rounded-lg"
               />
             </div>
+
             <span
               className={`font-heading font-bold text-xl uppercase tracking-tighter transition-colors ${textColor}`}
             >
@@ -84,7 +92,7 @@ export const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-[11px] font-heading font-medium uppercase tracking-[0.2em] transition-all relative group ${navLinkColor}`}
+                className={`text-[12px] font-heading font-bold uppercase tracking-[0.2em] transition-all relative group ${navLinkColor}`}
               >
                 {item.name}
                 <span
@@ -94,13 +102,14 @@ export const Header = () => {
             ))}
           </nav>
 
+          {/* Right Actions */}
           <div className="flex items-center space-x-4">
             <Button
               asChild
               variant="outline"
-              className={`hidden md:inline-flex transition-all rounded-none uppercase text-[12px] tracking-widest px-6 ${buttonClass}`}
+              className={`hidden md:inline-flex rounded-xl text-lg font-bold tracking-widest shadow-glow px-6 py-2 transition-all ${buttonClass}`}
             >
-              <Link href="/contact">Start Trial</Link>
+              <Link href="/contact">Get Consultation</Link>
             </Button>
 
             <Button
@@ -118,21 +127,22 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ===== Mobile Menu ===== */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-6 bg-white border-t border-border animate-slide-up px-6 shadow-xl">
+          <div className="md:hidden py-6 bg-surface border-t border-border animate-slide-up px-6 shadow-glow">
             <nav className="flex flex-col space-y-6">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="font-heading text-xs uppercase tracking-widest text-[#1F1E5E]/80 hover:text-[#1F1E5E] transition-colors py-2 border-b border-border/50"
+                  className="font-heading text-xs uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors py-2 border-b border-border/50"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Button className="w-full bg-[#1F1E5E] text-white rounded-none uppercase text-[10px] tracking-widest font-bold">
+
+              <Button className="w-full bg-primary text-white rounded-none uppercase text-[10px] tracking-widest font-bold hover:bg-primary-dark">
                 Get Started
               </Button>
             </nav>

@@ -1,78 +1,71 @@
+// app/components/Hero.tsx
 "use client";
 
-import { Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 export const Hero = () => {
   return (
     <section
       id="home"
-      // Primary Background (Navy Blue): #1F1E5E
-      className="relative min-h-[85vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-[#1F1E5E]"
+      className="relative bg-primary overflow-hidden py-8"
+      aria-label="Hero section"
     >
-      {/* Decorative Background - Carbon Fibre Texture */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-      </div>
+      {/* Soft color accents (reduced size + opacity) */}
+      <div className="absolute top-[-6rem] left-1/4 w-72 h-72 bg-primary-dark rounded-full blur-3xl opacity-30 pointer-events-none" />
+      <div className="absolute bottom-[-6rem] right-1/4 w-72 h-72 bg-primary-dark rounded-full blur-3xl opacity-30 pointer-events-none" />
 
-      {/* Decorative Corner Accents (Glows) */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#1A184D] rounded-full blur-[150px] opacity-60 mix-blend-screen" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#1A184D] rounded-full blur-[150px] opacity-60 mix-blend-screen" />
+      <div className="relative z-10 container mx-auto px-6 pt-24 pb-12 md:pt-28 md:pb-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* LEFT — Text */}
+          <div className="space-y-6 text-center lg:text-left animate-slide-up">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-[1.05] tracking-tight text-white">
+              Find & Win
+              <br />
+              <span className="text-white/85">
+                Government, Private & NGO
+              </span>{" "}
+              <span className="relative inline-block">
+                <span>Tenders</span>
+                <span className="absolute bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              </span>
+            </h1>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6 animate-slide-up">
-          {/* <div className="inline-block">
-            <span className="px-6 py-2 border border-white/20 bg-[#1A184D]/50 backdrop-blur-sm text-[11px] font-heading font-bold uppercase tracking-[0.3em] text-white/90 shadow-lg">
-              India's Premier Procurement Intelligence
-            </span>
-          </div> */}
+            <p className="text-base sm:text-lg md:text-2xl text-white/85 max-w-xl mx-auto lg:mx-0 normal-case">
+              Empowering Indian enterprises with AI-matched opportunities,
+              real-time intelligence, and elite bid consultancy.
+            </p>
 
-          {/* Main Headline - Inline Serif Style */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold leading-[1.1] uppercase tracking-tight text-white drop-shadow-xl">
-            Find & Win <br />
-            <span className="text-white/80">Government</span>{" "}
-            <span className="relative inline-block">
-              Tenders
-              {/* Underline Accent */}
-              <span className="absolute bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-            </span>
-          </h1>
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 pt-2">
+              <a
+                href="#pricing"
+                className="px-6 py-3 text-base sm:text-lg md:text-xl font-semibold rounded-xl bg-white text-primary shadow-sm motion-safe:transform motion-safe:transition motion-safe:duration-200 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-white/20"
+                aria-label="Start 14 day free trial"
+              >
+                Start 14-Day Free Trial
+              </a>
 
-          {/* Subheadline */}
-          <p className="text-lg md:text-2xl text-white/70 max-w-2xl font-light leading-relaxed">
-            Empowering Indian enterprises with AI-matched opportunities,
-            real-time intelligence, and elite bid consultancy.
-          </p>
+              <a
+                href="#contact"
+                className="px-5 py-3 text-base sm:text-lg md:text-xl font-semibold border rounded-xl border-white/20 text-white/90 bg-white/5 hover:bg-white/8 transition"
+                aria-label="Request a callback"
+              >
+                Request Callback
+              </a>
+            </div>
+          </div>
 
-          {/* Contact Strip - Styled for White Background */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-10 border border-[#1F1E5E]/10 shadow-lg corner-accent">
-              <div className="flex items-center gap-5">
-                <div className="p-3 border border-primary-foreground/20">
-                  <Phone className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div className="flex flex-col text-white/70">
-                  <span className="text-[9px] uppercase tracking-widest font-bold mb-1">
-                    Priority Line
-                  </span>
-                  <span className="text-lg font-heading font-bold">
-                    +91-7774 911330
-                  </span>
-                </div>
-              </div>
-              <div className="hidden md:block w-px h-10 bg-[#1F1E5E]/10" />
-
-              <div className="flex items-center gap-5">
-                <div className="p-3 border border-primary-foreground/20">
-                  <Mail className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div className="flex flex-col text-white/70">
-                  <span className="text-[9px] uppercase tracking-widest font-bold mb-1">
-                    Direct Inquiry
-                  </span>
-                  <span className="text-lg font-heading font-bold">
-                    Contact@tenderinfo.in
-                  </span>
-                </div>
+          {/* RIGHT — Dashboard Mock Image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="bg-surface/90 border border-primary-10 rounded-xl shadow-sm p-3 sm:p-4 md:p-6 max-w-2xl w-full">
+              <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
+                <Image
+                  src="/images/dashboard-mock.png"
+                  alt="TenderLink Dashboard Preview"
+                  fill
+                  className="object-cover rounded-lg"
+                  priority
+                />
               </div>
             </div>
           </div>

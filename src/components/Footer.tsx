@@ -38,7 +38,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#1F1E5E] text-white border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-foreground text-white border-t border-white/10 relative overflow-hidden">
       {/* Decorative Background Pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
@@ -46,20 +46,32 @@ export const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-10 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-3 mb-6 group">
-              {/* Logo Box */}
-              <div className="w-12 h-12 border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-white group-hover:border-white transition-all duration-300">
-                {/* Replaced Text Logo with Image if available, or kept stylized text */}
-                <span className="font-heading font-bold text-xl text-white group-hover:text-[#1F1E5E] transition-colors">
-                  TL
-                </span>
+            {/* Logo on left */}
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div
+                className="
+    relative w-11 h-11 
+    rounded-xl 
+    border
+    border-white/20
+    bg-primary
+    p-[2px]
+    shadow-sm
+    transition-all duration-300
+    group-hover:shadow-md"
+              >
+                <img
+                  src="/logo.png"
+                  alt="TenderLink Logo"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
-              <span className="font-heading font-bold text-2xl uppercase tracking-tight text-white">
+              <span className="font-heading font-bold text-2xl uppercase tracking-tighter transition-colors text-white">
                 TenderLink
               </span>
             </Link>
 
-            <p className="text-sm text-white/60 mb-8 max-w-sm font-light leading-relaxed">
+            <p className="text-lg text-white/60 mb-8 max-w-sm font-light leading-relaxed">
               India's leading AI-powered platform for government, private, and
               NGO tenders. Find, bid, and win with confidence.
             </p>
@@ -73,7 +85,7 @@ export const Footer = () => {
                   className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:border-white transition-all duration-300 group"
                   aria-label={social.label}
                 >
-                  <social.icon className="h-4 w-4 text-white/70 group-hover:text-[#1F1E5E] transition-colors" />
+                  <social.icon className="h-4 w-4 text-white/70 group-hover:text-primary transition-colors" />
                 </a>
               ))}
             </div>
@@ -82,7 +94,7 @@ export const Footer = () => {
           {/* Links Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="font-heading font-bold text-sm uppercase tracking-widest text-white/40 mb-6">
+              <h3 className="font-heading font-bold text-md uppercase tracking-widest text-white/60 mb-6">
                 {category}
               </h3>
               <ul className="space-y-4">
@@ -90,7 +102,7 @@ export const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block font-light"
+                      className="text-md text-white hover:translate-x-1 transition-all duration-300 inline-block font-light"
                     >
                       {link.name}
                     </a>
@@ -103,11 +115,11 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/40 uppercase tracking-wider font-medium">
+          <p className="text-sm text-white/40 uppercase tracking-wider font-medium">
             © {new Date().getFullYear()} TenderLink. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <span className="text-xs text-white/40 uppercase tracking-wider">
+            <span className="text-sm text-white/40 uppercase tracking-wider">
               Made in India
             </span>
           </div>

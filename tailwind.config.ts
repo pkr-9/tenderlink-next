@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-cinzel)", ...fontFamily.serif],
-        body: ["var(--font-cinzel)", ...fontFamily.sans],
+        heading: ["var(--font-heading)", "serif"],
+        body: ["var(--font-body)", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

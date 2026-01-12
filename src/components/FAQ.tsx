@@ -51,18 +51,17 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative border-t border-[#1F1E5E]/5">
+    <section className="py-24 bg-white relative border-t border-primary/5">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-20 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-[#1F1E5E] uppercase tracking-tighter">
-            Frequently Asked{" "}
-            <span className="text-[#1F1E5E]/70">Questions</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary uppercase tracking-tighter">
+            Frequently Asked <span className="text-primary/70">Questions</span>
           </h2>
-          <p className="text-lg text-[#1F1E5E]/60 max-w-2xl mx-auto font-light">
+          <p className="text-2xl text-primary/60 max-w-2xl mx-auto font-light">
             Everything you need to know about TenderLink
           </p>
-          <div className="w-16 h-1 bg-[#1F1E5E]/10 mx-auto mt-8" />
+          <div className="w-16 h-1 bg-primary/10 mx-auto mt-8" />
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -72,19 +71,15 @@ export const FAQ = () => {
                 key={index}
                 value={`item-${index}`}
                 // Chiseled Card Style
-                className="bg-white border border-[#1F1E5E]/10 px-6 py-2 transition-all duration-300 hover:border-[#1F1E5E]/40 hover:shadow-lg rounded-none animate-slide-up group"
+                className="bg-white border border-primary/10 px-6 py-2 transition-all duration-300 hover:border-primary/40 hover:shadow-lg rounded-none animate-slide-up group"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <span className="font-heading font-bold text-lg text-[#1F1E5E] group-hover:text-[#1A184D] uppercase tracking-wide">
+                  <span className="font-heading font-bold text-lg text-primary group-hover:text-primary-70 uppercase tracking-wide">
                     {faq.question}
                   </span>
                 </AccordionTrigger>
-
-                {/* UPDATED: Explicitly set font-sans and normal-case to override any global 
-                   uppercase headers or styles. 
-                */}
-                <AccordionContent className="text-[#1F1E5E]/70 font-sans text-base normal-case leading-relaxed pb-6 font-light">
+                <AccordionContent className="text-primary/70 font-sans text-base normal-case leading-relaxed pb-6 font-light">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

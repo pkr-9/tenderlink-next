@@ -1,8 +1,9 @@
 "use client";
 
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Bookmark, Star } from "lucide-react";
 import { servicesData } from "@/data/servicesData";
 
 interface FeaturesProps {
@@ -11,75 +12,249 @@ interface FeaturesProps {
   className?: string;
 }
 
+/**
+ * Small helper: truncate text safely (used when service.points missing)
+ */
+const truncate = (text: string | undefined, len = 120) =>
+  text && text.length > len ? text.slice(0, len - 1) + "…" : text || "";
+
+/**
+ * FeatureCard component — robust (defensive) access to service fields.
+ *
+ * Expected `service` shape (minimal):
+ * {
+ *   icon: React.ComponentType,
+ *   title: string,
+ *   summary: string,
+ *   points?: string[],         // optional bullet points / features
+ *   badges?: string[],         // small label badges (e.g., "24/7", "Govt", "Free trial")
+ *   metrics?: { label: string, value: string }[], // small KPI pills
+ *   featured?: boolean,        // whether to show a ribbon
+ *   href?: string,             // optional custom href (default /services/<slug>)
+ * }
+ */
+function FeatureCard({
+  slug,
+  service,
+  index,
+}: {
+  slug: string;
+  service: any;
+  index: number;
+}) {
+  const Icon = service.icon ?? (() => null);
+  const [saved, setSaved] = useState(false);
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
+
+  // accessible href fallback
+  const href = service.href ?? `/services/${slug}`;
+
+  // Points: try service.points array; fallback to splitting summary into bullets
+  const points: string[] =
+    service.points?.slice(0, 3) ||
+    (service.summary
+      ? service.summary
+          .split(/[\.\n]/)
+          .filter(Boolean)
+          .slice(0, 3)
+      : []);
+
+  return (
+    <Link
+      href={href}
+      className="block h-full group focus:outline-none"
+      aria-label={`${service.title} — ${
+        service.summary ? truncate(service.summary, 140) : ""
+      }`}
+    >
+      <Card
+        className="glass-card h-full flex flex-col relative overflow-hidden"
+        style={{ animationDelay: `${index * 80}ms` }}
+      >
+        {/* Corner/Featured ribbon */}
+        {service.featured && (
+          <div
+            aria-hidden
+            className="absolute top-4 left-0 -translate-x-1/2 px-2 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider bg-gradient-to-r from-yellow-300 to-amber-400 text-slate-900 shadow-sm"
+            style={{ transform: "translateX(-20%) rotate(-15deg)" }}
+          >
+            Featured
+          </div>
+        )}
+
+        {/* Top row: icon, badges, save */}
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {/* Icon circle (gradient) */}
+            <div
+              className="flex items-center justify-center w-12 h-12 rounded-lg"
+              style={{
+                background:
+                  service.accentGradient ??
+                  "linear-gradient(135deg,#06b6d4,#4f46e5)",
+                boxShadow: "0 6px 18px rgba(15,23,42,0.12)",
+              }}
+            >
+              <Icon className="w-6 h-6 text-white" aria-hidden />
+            </div>
+
+            <div>
+              <h3 className="text-xl md:text-2xl font-heading font-bold leading-tight text-slate-900">
+                {service.title}
+              </h3>
+              <div className="flex gap-2 mt-1 flex-wrap">
+                {(service.badges ?? []).slice(0, 2).map((b: string) => (
+                  <span
+                    key={b}
+                    className="text-[11px] uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-semibold"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Save button */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setSaved((s) => !s);
+              // TODO: hook analytics or persistence here
+            }}
+            aria-pressed={saved}
+            aria-label={saved ? "Saved" : "Save service"}
+            className="ml-auto p-2 rounded-md bg-white/90 text-slate-900 hover:bg-white shadow-sm focus:ring-2 focus:ring-primary"
+            title={saved ? "Saved" : "Save"}
+          >
+            <Bookmark className={`w-4 h-4 ${saved ? "text-primary" : ""}`} />
+          </button>
+        </div>
+
+        {/* Body: bullets + metric row */}
+        <div className="mt-4 flex-1">
+          {/* bullet points (progressive disclosure) */}
+          {points && points.length > 0 ? (
+            <ul className="space-y-2 text-md text-slate-700 mb-4 list-inside">
+              {points.slice(0, 3).map((p: string, i: number) => (
+                <li key={i} className="flex items-start gap-3">
+                  <Star className="w-4 h-4 mt-1 text-primary/90 flex-shrink-0" />
+                  <span className="leading-snug normal-case">{p.trim()}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-slate-700 mb-4 normal-case">
+              {truncate(service.summary, 140)}
+            </p>
+          )}
+
+          {/* Metrics / micro copy */}
+          <div className="flex flex-wrap gap-2">
+            {(service.metrics ?? []).slice(0, 3).map((m: any, idx: number) => (
+              <div
+                key={idx}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-sm font-semibold"
+                aria-hidden
+              >
+                <span className="text-sm text-slate-600">{m.label}</span>
+                <span className="text-md">{m.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer CTA area */}
+        <div className="mt-6 flex items-center justify-between gap-4">
+          {/* Learn more indicator (card itself is link) */}
+          <span className="inline-flex items-center gap-3">
+            <span className="text-[12px] font-bold uppercase tracking-widest text-slate-700">
+              Learn More
+            </span>
+            <ArrowRight className="w-4 h-4 text-slate-700 group-hover:translate-x-1 transition-transform duration-200" />
+          </span>
+
+          {/* Secondary actions as buttons (NOT links) */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={(e) => {
+                e.preventDefault(); // prevent parent Link navigation
+                e.stopPropagation();
+                window.location.href = `/services/${slug}/demo`;
+              }}
+              className="text-md text-primary underline underline-offset-2"
+            >
+              Request Demo
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = `/services/${slug}`;
+              }}
+              className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary text-white text-md font-semibold"
+            >
+              Open
+            </button>
+          </div>
+        </div>
+      </Card>
+    </Link>
+  );
+}
+
+/* Utility used in FeatureCard (small helper) */
+function hrefFallback(slug: string) {
+  return `/services/${slug}`;
+}
+
+/* ---------- Main enhanced Features component ---------- */
 export const Features = ({
   heading = (
     <>
-      Why Choose <span className="text-[#1F1E5E]">TenderLink</span>
+      Why Choose <span className="text-primary">TenderLink</span>
     </>
   ),
   subheading = "Everything you need to find, bid, and win government and private tenders",
   className = "",
 }: FeaturesProps) => {
+  // Defensive: ensure servicesData is an object map
+  const servicesEntries = Object.entries(servicesData ?? {});
+
   return (
     <section
       id="features-services"
-      className={`px-6 py-24 bg-white ${className}`}
+      className={`px-6 py-24 bg-surface border-b border-primary-10 ${className}`}
     >
       <div className="container mx-auto px-4">
-        {/* Section Header - Dark Text on White Background */}
-        <div className="text-center mb-20 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-[#1F1E5E] uppercase tracking-tight">
+        {/* Header */}
+        <div className="text-center mb-12 animate-slide-up">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-primary uppercase tracking-tight">
             {heading}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+
+          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed">
             {subheading}
           </p>
-          <div className="w-16 h-1 bg-[#1F1E5E]/20 mx-auto mt-8" />
+
+          <div className="w-16 h-1 bg-primary-10 mx-auto mt-6" />
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(servicesData).map(([slug, service], index) => {
-            const Icon = service.icon;
-            return (
-              <Link
-                key={slug}
-                href={`/services/${slug}`}
-                className="block h-full group"
-              >
-                <Card
-                  // Card is now Navy Blue (#1F1E5E) with White Text
-                  // "corner-accent-white" would be a custom class if needed, but here we use borders
-                  className="bg-[#1F1E5E] border border-[#1A184D] p-8 h-full shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group-hover:border-[#1F1E5E] relative overflow-hidden flex flex-col rounded-none"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Decorative Chiseled Corner Detail (Light) */}
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/30" />
-
-                  {/* Icon Box - Slightly darker blue block with White Icon */}
-                  <div className="mb-8 p-4 w-fit bg-[#1A184D] border border-white/10 text-white transition-transform duration-500 group-hover:scale-105 shadow-md">
-                    <Icon className="h-6 w-6" />
-                  </div>
-
-                  <h3 className="text-xl font-heading font-bold mb-4 text-white uppercase tracking-wider">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-white/70 mb-8 text-sm leading-relaxed flex-grow font-light">
-                    {service.summary}
-                  </p>
-
-                  {/* Button - Outline White */}
-                  <div className="mt-auto w-full py-4 px-5 border border-white/20 bg-transparent text-white group-hover:bg-white group-hover:text-[#1F1E5E] group-hover:border-white transition-all duration-300 flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest">
-                      Learn More
-                    </span>
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Card>
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {servicesEntries.map(([slug, service], index) => (
+            <FeatureCard
+              key={slug}
+              slug={slug}
+              service={service}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>

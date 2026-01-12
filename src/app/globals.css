@@ -1,72 +1,191 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------
+   Color Tokens (HSL parts for nice interoperability with Tailwind)
+   - Use `h s% l%` format so you can write hsl(var(--token) / <alpha>)
+   - Add semantic names for all hardcoded colors found in the codebase
+   ------------------------------------------------------------*/
 @layer base {
   :root {
-    /* Primary / Page Background -> Now White */
-    --background: 0 0% 100%;
-    /* Main Text -> Now Navy Blue (#1F1E5E) */
-    --foreground: 241 52% 25%;
+    /* Core page colors */
+    --background: 0 0% 100%; /* white */
+    --foreground: 241 52% 25%; /* navy (primary text) - corresponds to #1F1E5E */
 
-    /* Cards & Surfaces -> Now White */
-    --card: 0 0% 100%;
-    /* Card Text -> Navy Blue */
-    --card-foreground: 241 52% 25%;
+    /* Primary palette (used heavily across components) */
+    --primary: 241 52% 25%; /* main navy: #1F1E5E  */
+    --primary-dark: 241 60% 18%; /* darker navy: approx #1A184D */
+    --primary-foreground: 0 0% 100%; /* text on primary (white) */
 
-    /* Popovers (Dropdowns, Tooltips) */
+    /* Secondary / muted */
+    --secondary: 210 40% 96.1%; /* very light muted surface */
+    --muted-foreground: 215.4 16.3% 46.9%; /* muted text color */
+
+    /* White / surfaces */
+    --card: 0 0% 100%; /* card surface (white) */
     --popover: 0 0% 100%;
-    --popover-foreground: 241 52% 25%;
 
-    /* Primary Actions (Buttons, Active States) -> Now Navy Blue */
-    --primary: 241 52% 25%;
-    /* Text on Primary Buttons -> White */
-    --primary-foreground: 0 0% 100%;
+    /* Accent / action colors */
+    --accent-red: 0 85% 53%; /* used for "problem" red accents (approx) */
+    --accent-teal: 174 76% 36%; /* used for small checks / good states (teal) */
 
-    /* Secondary Actions (Muted buttons) -> Light Grayish Blue */
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 241 52% 25%;
+    /* WhatsApp / Green (used by floating WhatsApp button) */
+    --whatsapp: 142 61% 38%; /* approx for #25D366 */
+    --whatsapp-dark: 142 61% 34%; /* hover shade */
 
-    /* Muted Text / Placeholders */
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    /* Borders / Inputs -> Light Gray for subtle separation */
+    /* Borders / inputs / rings */
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 241 52% 25%;
 
-    --radius: 0rem; /* Kept 0rem for Chiseled/Professional look */
+    /* Utility radii / other tokens */
+    --radius: 0rem;
+
+    /* Helpful opacity variants can be referenced using CSS color syntax like:
+       color: hsl(var(--primary) / 0.1);
+       This works in modern browsers (CSS Color Level 4). */
   }
 }
 
+/* ------------------------------------------------------------
+   Base typography & element defaults (preserve Tailwind usage)
+   ------------------------------------------------------------*/
 @layer base {
   * {
     @apply border-border;
   }
+
+  html,
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    height: 100%;
   }
+
+  body {
+    @apply font-body text-foreground;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-heading uppercase;
-    letter-spacing: 0.05em;
-    /* Updated text shadow to be subtler on white background */
-    text-shadow: none;
+    @apply font-heading;
+    letter-spacing: 0.04em; /* optional */
+  }
+
+  p {
+    @apply font-body;
   }
 }
 
+/* ------------------------------------------------------------
+   Semantic utility classes that map to the tokens above
+   (Use these in components instead of hardcoded hex)
+   ------------------------------------------------------------*/
 @layer utilities {
-  .corner-accent {
-    position: relative;
-    border: 1px solid var(--border);
+  /* Primary color utils */
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+  .bg-primary-dark {
+    background-color: hsl(var(--primary-dark));
+  }
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+  .text-primary-70 {
+    color: hsl(var(--primary) / 0.7);
+  }
+  .text-primary-80 {
+    color: hsl(var(--primary) / 0.8);
+  }
+  .border-primary {
+    border-color: hsl(var(--primary));
+  }
+  .border-primary-10 {
+    border-color: hsl(var(--primary) / 0.1);
+  }
+  .bg-primary-10 {
+    background-color: hsl(var(--primary) / 0.1);
   }
 
-  /* Creates small chiseled corner details */
+  /* Foreground / surface utilities */
+  .bg-surface {
+    background-color: hsl(var(--card));
+  }
+  .text-surface {
+    color: hsl(var(--card-foreground));
+  }
+
+  /* Muted / placeholder */
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+  .bg-muted-30 {
+    background-color: hsl(var(--secondary) / 0.3);
+  }
+
+  /* Accent colors */
+  .bg-accent-red {
+    background-color: hsl(var(--accent-red));
+  }
+  .text-accent-red {
+    color: hsl(var(--accent-red));
+  }
+  .bg-accent-teal {
+    background-color: hsl(var(--accent-teal));
+  }
+  .text-accent-teal {
+    color: hsl(var(--accent-teal));
+  }
+
+  /* WhatsApp/Greeen */
+  .bg-whatsapp {
+    background-color: hsl(var(--whatsapp));
+  }
+  .bg-whatsapp-dark {
+    background-color: hsl(var(--whatsapp-dark));
+  }
+  .text-whatsapp {
+    color: hsl(var(--whatsapp));
+  }
+  .ring-whatsapp {
+    box-shadow: 0 0 0 3px hsl(var(--whatsapp) / 0.12);
+  }
+
+  /* White / subtle variations */
+  .text-white-70 {
+    color: hsl(var(--primary-foreground) / 0.7);
+  } /* for text-white/70 replacements */
+  .bg-white-10 {
+    background-color: hsl(var(--card) / 0.1);
+  }
+
+  /* Gradient helper using primary -> primary-dark (used across design) */
+  .bg-gradient-primary {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-dark)) 100%
+    );
+  }
+
+  /* Common shadows / glows tuned to primary */
+  .shadow-glow {
+    box-shadow: 0 8px 24px -8px hsl(var(--primary) / 0.25),
+      0 2px 6px -2px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Corner accent (uses token instead of hardcoded hex) */
+  .corner-accent {
+    position: relative;
+    border: 1px solid hsl(var(--border));
+  }
   .corner-accent::before {
     content: "";
     position: absolute;
@@ -74,33 +193,63 @@
     left: -2px;
     width: 10px;
     height: 10px;
-    /* Uses the Accent Blue (#1A184D) for the corner detail */
-    border-top: 2px solid #1a184d;
-    border-left: 2px solid #1a184d;
+    border-top: 2px solid hsl(var(--primary-dark));
+    border-left: 2px solid hsl(var(--primary-dark));
   }
 
-  /* Standard Card Style */
   .glass-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Added subtle shadow for depth */
-    backdrop-filter: none;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem; /* rounded-xl */
+    padding: 1.5rem; /* bigger padding */
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+      background-color 0.25s ease;
   }
 
-  /* Gradient Text Helper - Now uses Primary Navy */
+  /* Hover lift effect */
+  .glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.06);
+    background-color: hsl(var(--secondary) / 0.6);
+  }
+  .icon-badge {
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(var(--primary) / 0.9);
+    color: hsl(var(--primary-foreground));
+    margin-bottom: 1rem;
+  }
+
+  /* Gradient text helper */
   .gradient-text {
     background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: initial;
-    color: var(--primary); /* Navy Blue */
+    color: hsl(var(--primary));
     font-weight: 700;
   }
 
-  /* Animation Utilities (Unchanged) */
+  /* Small helper for divider lines (replacing bg-[#1F1E5E]/10 patterns) */
+  .line-primary-10 {
+    background-color: hsl(var(--primary) / 0.1);
+    height: 1px;
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   Animation utilities (unchanged)
+   ------------------------------------------------------------*/
+@layer utilities {
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-
   @keyframes float {
     0%,
     100% {
@@ -114,7 +263,6 @@
   .animate-slide-up {
     animation: slideUp 0.6s ease-out;
   }
-
   @keyframes slideUp {
     from {
       opacity: 0;

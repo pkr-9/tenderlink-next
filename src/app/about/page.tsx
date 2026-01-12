@@ -1,6 +1,6 @@
 // src/pages/AboutUsPage.tsx
 
-import { Building, Eye, Users } from "lucide-react";
+import { Building, Eye } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const AboutUsPage = () => {
@@ -25,8 +25,8 @@ const AboutUsPage = () => {
             style={{ animationDelay: "0.1s" }}
           >
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-gradient-primary">
-                <Building className="h-6 w-6 text-white" />
+              <div className="icon-badge">
+                <Building className="h-6 w-6" />
               </div>
               <div>
                 <h2 className="text-2xl font-heading font-semibold mb-2">
@@ -45,8 +45,8 @@ const AboutUsPage = () => {
             style={{ animationDelay: "0.2s" }}
           >
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-gradient-primary">
-                <Eye className="h-6 w-6 text-white" />
+              <div className="icon-badge">
+                <Eye className="h-6 w-6" />
               </div>
               <div>
                 <h2 className="text-2xl font-heading font-semibold mb-2">

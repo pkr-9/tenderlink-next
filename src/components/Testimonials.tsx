@@ -49,68 +49,104 @@ export const Testimonials = () => {
     },
   ];
 
-  return (
-    <section className="px-6 py-24 bg-white relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl border-x border-[#1F1E5E]/5 pointer-events-none" />
+  /* ===== Same Monotonic Blue Sequence ===== */
+  const cardThemes = [
+    {
+      border: "border-[#1F1E5E]/25",
+      accent: "text-[#1F1E5E]",
+      softBg: "bg-[#1F1E5E]/5",
+      glow: "hover:shadow-[#1F1E5E]/20",
+    },
+    {
+      border: "border-[#2F2FA2]/25",
+      accent: "text-[#2F2FA2]",
+      softBg: "bg-[#2F2FA2]/5",
+      glow: "hover:shadow-[#2F2FA2]/20",
+    },
+    {
+      border: "border-[#4F46E5]/25",
+      accent: "text-[#4F46E5]",
+      softBg: "bg-[#4F46E5]/5",
+      glow: "hover:shadow-[#4F46E5]/20",
+    },
+    {
+      border: "border-[#2563EB]/25",
+      accent: "text-[#2563EB]",
+      softBg: "bg-[#2563EB]/5",
+      glow: "hover:shadow-[#2563EB]/20",
+    },
+  ];
 
+  return (
+    <section className="px-6 py-24 bg-surface relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-[#1F1E5E] uppercase tracking-tighter">
-            What Our <span className="text-[#1F1E5E]/70">Clients Say</span>
+        {/* ===== Header ===== */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-primary">
+            What Our <span className="text-primary/70">Clients Say</span>
           </h2>
-          <p className="text-lg text-[#1F1E5E]/60 max-w-2xl mx-auto font-light">
-            Join thousands of satisfied businesses winning tenders with
-            TenderLink.
+          <p className="text-2xl text-muted-foreground max-w-2xl mx-auto">
+            Trusted by thousands of businesses winning tenders with TenderLink.
           </p>
-          <div className="w-16 h-1 bg-[#1F1E5E]/20 mx-auto mt-8" />
+          <div className="w-16 h-1 bg-primary/20 mx-auto mt-6" />
         </div>
 
-        {/* Testimonials Grid */}
+        {/* ===== Testimonials Grid ===== */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="group bg-white border border-[#1F1E5E]/10 p-8 hover:shadow-2xl hover:border-[#1F1E5E]/30 transition-all duration-500 rounded-none relative flex flex-col animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Decorative Quote Icon (Watermark) */}
-              <div className="absolute top-4 right-6 text-[#1F1E5E]/5 group-hover:text-[#1F1E5E]/10 transition-colors duration-500">
-                <Quote className="h-16 w-16 rotate-180" />
-              </div>
+          {testimonials.map((testimonial, index) => {
+            const theme = cardThemes[index % cardThemes.length];
 
-              {/* Rating Stars - Using Navy Blue for strict theme adherence */}
-              <div className="flex items-center gap-1 mb-6 relative z-10">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-[#1F1E5E] text-[#1F1E5E]"
-                  />
-                ))}
-              </div>
-
-              {/* Review Text */}
-              <p className="text-[#1F1E5E]/80 mb-8 italic font-serif text-lg leading-relaxed flex-grow relative z-10">
-                "{testimonial.text}"
-              </p>
-
-              {/* User Profile */}
-              <div className="flex items-center gap-4 pt-6 border-t border-[#1F1E5E]/10 mt-auto">
-                <div className="h-12 w-12 rounded-full bg-[#1F1E5E]/5 flex items-center justify-center border border-[#1F1E5E]/10 text-2xl grayscale group-hover:grayscale-0 transition-all duration-500">
-                  {testimonial.image}
+            return (
+              <Card
+                key={index}
+                className={`
+                  bg-surface border ${theme.border}
+                  p-8 rounded-2xl
+                  shadow-glow hover:shadow-xl
+                  transition-all duration-300
+                  flex flex-col relative
+                  ${theme.glow}
+                `}
+              >
+                {/* Quote watermark */}
+                <div className={`absolute top-4 right-5 ${theme.accent}/10`}>
+                  <Quote className="h-14 w-14 rotate-180" />
                 </div>
-                <div>
-                  <div className="font-heading font-bold text-[#1F1E5E] uppercase tracking-wide text-sm">
-                    {testimonial.name}
+
+                {/* Rating */}
+                <div className="flex gap-1 mb-5">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 fill-current ${theme.accent}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Text */}
+                <p className="text-muted-foreground text-lg italic leading-relaxed mb-6 flex-grow">
+                  “{testimonial.text}”
+                </p>
+
+                {/* User */}
+                <div className="flex items-center gap-4 pt-5 border-t border-primary/10">
+                  <div
+                    className={`h-12 w-12 rounded-full flex items-center justify-center text-xl ${theme.softBg} ${theme.accent}`}
+                  >
+                    {testimonial.image}
                   </div>
-                  <div className="text-xs text-[#1F1E5E]/60 font-light tracking-wider uppercase">
-                    {testimonial.company}
+                  <div>
+                    <div className={`text-md font-bold ${theme.accent}`}>
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-muted-foreground uppercase tracking-wide">
+                      {testimonial.company}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
