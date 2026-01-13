@@ -394,10 +394,10 @@ export default function ServicesPage() {
 
   // derive tags from servicesData (flattened)
   const allTagsSet = new Set<string>();
-  entries.forEach(([_, s]) => {
+  entries.forEach(([_, s]: any) => {
     (s?.tags ?? []).forEach((t: string) => allTagsSet.add(t));
     // also include badges as tags optionally
-    (s?.badges ?? []).forEach((b: string) => allTagsSet.add(b));
+    ((s as any)?.badges ?? []).forEach((b: string) => allTagsSet.add(b));
   });
   const allTags = Array.from(allTagsSet);
 
@@ -423,8 +423,8 @@ export default function ServicesPage() {
     }
 
     if (activeTags.length > 0) {
-      arr = arr.filter(({ s }) => {
-        const tags = new Set([...(s.tags ?? []), ...(s.badges ?? [])]);
+      arr = arr.filter(({ s }: any) => {
+        const tags = new Set([...(s.tags ?? []), ...((s as any).badges ?? [])]);
         return activeTags.every((t) => tags.has(t));
       });
     }

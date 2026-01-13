@@ -297,7 +297,7 @@ export const SectorHighlights = () => {
         {/* Carousel */}
         <Carousel
           opts={{ align: "start", loop: true }}
-          plugins={isVisible ? [autoplay] : []}
+          plugins={isVisible && autoplay ? [autoplay] : []}
         >
           <CarouselContent className="-ml-4">
             {sectors.map((sector) => (
