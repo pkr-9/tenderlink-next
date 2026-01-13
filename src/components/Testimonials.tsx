@@ -78,7 +78,7 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="px-6 py-24 bg-surface relative overflow-hidden">
+    <section className="section px-6 bg-surface relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* ===== Header ===== */}
         <div className="text-center mb-16">

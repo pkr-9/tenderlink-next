@@ -62,7 +62,7 @@ export const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="py-24 bg-surface border-t border-primary/10"
+      className="section bg-surface border-t border-primary/10"
     >
       <div className="container mx-auto px-4">
         {/* ===== Header ===== */}
@@ -132,7 +132,7 @@ export const Pricing = () => {
                     </div>
 
                     <span
-                      className={`text-md ${
+                      className={`text-md font-bold ${
                         feature.included
                           ? "text-foreground"
                           : "text-muted-foreground line-through"

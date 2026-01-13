@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen md:py-20">
+    <div className="min-h-screen">
       {/* Reusing the Contact Component for the Form Section */}
       <Contact />
 

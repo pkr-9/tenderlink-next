@@ -68,7 +68,7 @@ export const MarketGap = () => {
   ];
 
   return (
-    <section id="market-gap" className="py-24 bg-surface">
+    <section id="market-gap" className="section bg-surface">
       <div className="container mx-auto px-4">
         {/* ===== Header ===== */}
         <div className="text-center mb-16">

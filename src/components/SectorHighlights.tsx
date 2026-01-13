@@ -52,32 +52,6 @@ const sectors = [
   },
 
   {
-    id: "health",
-    icon: HeartPulse,
-    title: "Healthcare & Pharma",
-    count: "6k+ Tenders",
-    tag: "Critical",
-    gradient: "linear-gradient(135deg,#2F2FA2 0%,#4F46E5 100%)",
-    pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
-    categories: [
-      { key: "equipment", label: "Medical Equipment", count: "2.1k" },
-      { key: "drugs", label: "Pharmaceuticals", count: "1.7k" },
-      { key: "labs", label: "Lab Services", count: "1.1k" },
-      { key: "ambulance", label: "Ambulance Services", count: "480" },
-      { key: "hospital-build", label: "Hospital Construction", count: "380" },
-      { key: "consumables", label: "Consumables", count: "920" },
-      { key: "diagnostic", label: "Diagnostic Services", count: "610" },
-      { key: "vaccines", label: "Vaccines", count: "350" },
-      { key: "health-it", label: "IT in Healthcare", count: "240" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "AIIMS MRI Procurement", value: "₹42 Cr" },
-      { id: 2, title: "State Vaccine Supply Contract", value: "₹68 Cr" },
-    ],
-  },
-
-  {
     id: "it",
     icon: Monitor,
     title: "IT & Software",
@@ -132,6 +106,31 @@ const sectors = [
   },
 
   {
+    id: "health",
+    icon: HeartPulse,
+    title: "Healthcare & Pharma",
+    count: "6k+ Tenders",
+    tag: "Critical",
+    gradient: "linear-gradient(135deg,#2F2FA2 0%,#4F46E5 100%)",
+    pattern:
+      "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
+    categories: [
+      { key: "equipment", label: "Medical Equipment", count: "2.1k" },
+      { key: "drugs", label: "Pharmaceuticals", count: "1.7k" },
+      { key: "labs", label: "Lab Services", count: "1.1k" },
+      { key: "ambulance", label: "Ambulance Services", count: "480" },
+      { key: "hospital-build", label: "Hospital Construction", count: "380" },
+      { key: "consumables", label: "Consumables", count: "920" },
+      { key: "diagnostic", label: "Diagnostic Services", count: "610" },
+      { key: "vaccines", label: "Vaccines", count: "350" },
+      { key: "health-it", label: "IT in Healthcare", count: "240" },
+    ],
+    sampleTenders: [
+      { id: 1, title: "AIIMS MRI Procurement", value: "₹42 Cr" },
+      { id: 2, title: "State Vaccine Supply Contract", value: "₹68 Cr" },
+    ],
+  },
+  {
     id: "logistics",
     icon: Truck,
     title: "Logistics & Supply",
@@ -158,143 +157,6 @@ const sectors = [
     ],
   },
 ];
-
-// const sectors = [
-//   {
-//     id: "construction",
-//     icon: HardHat,
-//     title: "Construction & Infra",
-//     count: "12k+ Tenders",
-//     tag: "High Volume",
-//     gradient: "linear-gradient(135deg,#ff7a18 0%,#af002d 100%)",
-//     pattern:
-//       "repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 12px)",
-//     categories: [
-//       { key: "roads", label: "Roads", count: "3.2k" },
-//       { key: "bridges", label: "Bridges", count: "2.1k" },
-//       { key: "urban", label: "Urban Dev", count: "1.5k" },
-//       { key: "metro", label: "Metro Projects", count: "980" },
-//       { key: "airports", label: "Airports", count: "740" },
-//       { key: "housing", label: "Housing", count: "1.1k" },
-//       { key: "tunnels", label: "Tunnels", count: "420" },
-//       { key: "coastal", label: "Coastal Works", count: "310" },
-//       { key: "drainage", label: "Drainage", count: "560" },
-//       { key: "public-buildings", label: "Public Buildings", count: "870" },
-//     ],
-//     sampleTenders: [
-//       { id: 1, title: "NH-48 Highway Expansion", value: "₹124 Cr" },
-//       { id: 2, title: "Smart City Drainage Project", value: "₹52 Cr" },
-//     ],
-//   },
-
-//   {
-//     id: "it",
-//     icon: Monitor,
-//     title: "IT & Software",
-//     count: "8.5k+ Tenders",
-//     tag: "Trending",
-//     gradient: "linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%)",
-//     pattern:
-//       "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
-//     categories: [
-//       { key: "saas", label: "SaaS", count: "2.4k" },
-//       { key: "hardware", label: "Hardware", count: "1.8k" },
-//       { key: "cloud", label: "Cloud", count: "1.2k" },
-//       { key: "cyber", label: "Cybersecurity", count: "980" },
-//       { key: "ai", label: "AI / ML", count: "640" },
-//       { key: "data-centers", label: "Data Centers", count: "480" },
-//       { key: "networking", label: "Networking", count: "530" },
-//       { key: "managed", label: "Managed Services", count: "410" },
-//       { key: "support", label: "IT Support", count: "720" },
-//       { key: "mobile", label: "Mobile Apps", count: "360" },
-//     ],
-//     sampleTenders: [
-//       { id: 1, title: "Government ERP System Upgrade", value: "₹18 Cr" },
-//       { id: 2, title: "State Cloud Migration Project", value: "₹9 Cr" },
-//     ],
-//   },
-
-//   {
-//     id: "energy",
-//     icon: Zap,
-//     title: "Energy & Power",
-//     count: "5k+ Tenders",
-//     tag: "Green Growth",
-//     gradient: "linear-gradient(135deg,#22c55e 0%,#16a34a 100%)",
-//     pattern:
-//       "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
-//     categories: [
-//       { key: "solar", label: "Solar", count: "1.9k" },
-//       { key: "wind", label: "Wind", count: "1.1k" },
-//       { key: "hydro", label: "Hydro", count: "640" },
-//       { key: "battery", label: "Battery Storage", count: "520" },
-//       { key: "grid", label: "Power Grid", count: "860" },
-//       { key: "transmission", label: "Transmission Lines", count: "420" },
-//       { key: "substations", label: "Substations", count: "380" },
-//       { key: "biomass", label: "Biomass", count: "210" },
-//       { key: "ev-charging", label: "EV Charging", count: "300" },
-//       { key: "energy-audit", label: "Energy Audits", count: "170" },
-//     ],
-//     sampleTenders: [
-//       { id: 1, title: "500MW Solar Plant Development", value: "₹210 Cr" },
-//       { id: 2, title: "National Grid Upgrade Contract", value: "₹95 Cr" },
-//     ],
-//   },
-
-//   {
-//     id: "health",
-//     icon: HeartPulse,
-//     title: "Healthcare & Pharma",
-//     count: "6k+ Tenders",
-//     tag: "Critical",
-//     gradient: "linear-gradient(135deg,#f97316 0%,#ef4444 100%)",
-//     pattern:
-//       "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
-//     categories: [
-//       { key: "equipment", label: "Medical Equipment", count: "2.1k" },
-//       { key: "drugs", label: "Pharmaceuticals", count: "1.7k" },
-//       { key: "labs", label: "Lab Services", count: "1.1k" },
-//       { key: "ambulance", label: "Ambulance Services", count: "480" },
-//       { key: "hospital-build", label: "Hospital Construction", count: "380" },
-//       { key: "consumables", label: "Consumables", count: "920" },
-//       { key: "diagnostic", label: "Diagnostic Services", count: "610" },
-//       { key: "vaccines", label: "Vaccines", count: "350" },
-//       { key: "health-it", label: "IT in Healthcare", count: "240" },
-//       // { key: "telemedicine", label: "Telemedicine", count: "180" },
-//     ],
-//     sampleTenders: [
-//       { id: 1, title: "AIIMS MRI Procurement", value: "₹42 Cr" },
-//       { id: 2, title: "State Vaccine Supply Contract", value: "₹68 Cr" },
-//     ],
-//   },
-
-//   {
-//     id: "logistics",
-//     icon: Truck,
-//     title: "Logistics & Supply",
-//     count: "9k+ Tenders",
-//     tag: "Popular",
-//     gradient: "linear-gradient(135deg,#fb7185 0%,#f43f5e 100%)",
-//     pattern:
-//       "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 12px)",
-//     categories: [
-//       { key: "freight", label: "Freight", count: "3.4k" },
-//       { key: "warehouse", label: "Warehousing", count: "2.2k" },
-//       { key: "fleet", label: "Fleet Mgmt", count: "1.3k" },
-//       { key: "cold", label: "Cold Chain", count: "860" },
-//       { key: "port", label: "Port Services", count: "420" },
-//       { key: "last-mile", label: "Last-Mile", count: "980" },
-//       { key: "courier", label: "Courier", count: "600" },
-//       { key: "packaging", label: "Packaging", count: "340" },
-//       { key: "inventory", label: "Inventory Software", count: "290" },
-//       { key: "terminal", label: "Terminal Ops", count: "210" },
-//     ],
-//     sampleTenders: [
-//       { id: 1, title: "Indian Rail Freight Handling", value: "₹74 Cr" },
-//       { id: 2, title: "State Warehouse Automation", value: "₹29 Cr" },
-//     ],
-//   },
-// ];
 
 /* ---------- Utility ---------- */
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -386,14 +248,39 @@ function SectorCard({ sector }: { sector: (typeof sectors)[number] }) {
 
 /* ---------- Main Component ---------- */
 export const SectorHighlights = () => {
-  const autoplay = Autoplay({
-    delay: 3500,
-    stopOnMouseEnter: true,
-    stopOnInteraction: true,
-  });
+  const [isVisible, setIsVisible] = React.useState(false);
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const autoplay = isVisible
+    ? Autoplay({
+        delay: 3500,
+        stopOnMouseEnter: true,
+        stopOnInteraction: true,
+      })
+    : false;
 
   return (
-    <section className="py-20 bg-surface border-b border-primary-10">
+    <section
+      ref={sectionRef}
+      className="section bg-surface border-b border-primary-10"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -408,7 +295,10 @@ export const SectorHighlights = () => {
         </div>
 
         {/* Carousel */}
-        <Carousel opts={{ align: "start", loop: true }} plugins={[autoplay]}>
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={isVisible ? [autoplay] : []}
+        >
           <CarouselContent className="-ml-4">
             {sectors.map((sector) => (
               <CarouselItem

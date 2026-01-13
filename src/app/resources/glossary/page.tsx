@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function GlossaryPage() {
   return (
-    <div className="min-h-screen py-24 md:py-48 bg-muted/20">
+    <div className="min-h-screen section bg-muted/20">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16 animate-slide-up">
           <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary mb-6">

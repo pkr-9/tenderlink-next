@@ -17,7 +17,8 @@ export const howItWorksData = [
             "AI-driven eligibility checks.",
             "Keyword-based filtering.",
             "Exclusion of irrelevant tenders."
-        ]
+        ],
+        hasStickyCTA: true
     },
     {
         step: 3,

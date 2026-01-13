@@ -111,7 +111,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 bg-surface border-t border-primary/10"
+      className="section bg-surface border-t border-primary/10"
     >
       <div className="container mx-auto px-4">
         {/* ===== Header ===== */}
@@ -247,8 +247,8 @@ export const Contact = () => {
                         </FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="John Doe"
-                            className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary"
+                            placeholder="Full Name"
+                            className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary placeholder:text-lg"
                             {...field}
                           />
                         </FormControl>
@@ -269,7 +269,7 @@ export const Contact = () => {
                           <Input
                             type="email"
                             placeholder="email@example.com"
-                            className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary"
+                            className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary placeholder:text-lg"
                             {...field}
                           />
                         </FormControl>
@@ -291,7 +291,7 @@ export const Contact = () => {
                         <Input
                           type="tel"
                           placeholder="+91 98765 43210"
-                          className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary"
+                          className="rounded-xl bg-primary/[0.03] border-primary/20 h-12 focus:border-primary placeholder:text-lg"
                           {...field}
                         />
                       </FormControl>
@@ -312,7 +312,7 @@ export const Contact = () => {
                         <Textarea
                           rows={6}
                           placeholder="Tell us about your requirements..."
-                          className="rounded-xl bg-primary/[0.03] border-primary/20 resize-none focus:border-primary"
+                          className="rounded-xl bg-primary/[0.03] border-primary/20 resize-none focus:border-primary placeholder:text-lg"
                           {...field}
                         />
                       </FormControl>

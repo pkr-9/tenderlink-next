@@ -23,7 +23,7 @@ const CLIENTS = [
 
 export default function ClientLogos() {
   return (
-    <section className="py-16 border-b border-border/40 bg-background/50 backdrop-blur-sm relative z-20 transition-colors duration-300">
+    <section className="section border-b border-border/40 bg-background/50 backdrop-blur-sm relative z-20 transition-colors duration-300">
       <div className="container mx-auto px-6">
         <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-10">
           Trusted by innovative teams at

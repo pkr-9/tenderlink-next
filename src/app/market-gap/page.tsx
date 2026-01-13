@@ -4,106 +4,88 @@ import { marketGapData } from "@/data/marketGapData";
 import { Card } from "@/components/ui/card";
 import { Check, X } from "lucide-react";
 
-const MarketGapPage = () => {
+export default function MarketGapPage() {
   return (
-    <section className="py-24 md:py-32 bg-surface relative overflow-hidden">
-      {/* Background Tech Grid Pattern */}
-      {/* <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      /> */}
+    <section className="relative section bg-surface overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_60%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* ===== Header ===== */}
-        <div className="text-center mb-24 animate-slide-up">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 text-primary uppercase tracking-tighter">
-            The <span className="text-primary-70">Gap</span> in the Market
+        {/* HEADER */}
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-primary">
+            The <span className="text-primary/70">Gap</span> in the Market
           </h1>
 
-          <p className="text-xl text-primary-70 max-w-3xl mx-auto font-light leading-relaxed">
-            Why traditional tendering is broken, and how TenderLink fixes it. We
-            identify the critical inefficiencies that hold businesses back.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Why traditional tendering is broken — and how TenderLink fixes it.
           </p>
 
-          <div className="w-24 h-1 bg-primary-10 mx-auto mt-8" />
+          <div className="w-20 h-1 bg-primary/20 mx-auto mt-6" />
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        {/* TIMELINE LINE */}
+        <div className="relative max-w-6xl mx-auto">
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/20" />
+
+          {/* ITEMS */}
           {marketGapData.map((item, index) => (
-            <div key={item.id} className="relative mb-20 last:mb-0 group">
-              {/* Connector Line (Desktop) */}
-              {index !== marketGapData.length - 1 && (
-                <div className="hidden md:block absolute left-1/2 top-16 bottom-[-80px] w-px bg-primary-10 -ml-[0.5px] z-0" />
-              )}
+            <div key={item.id} className="relative mb-16 last:mb-0">
+              {/* Center Icon */}
+              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-14 h-14 bg-primary text-white items-center justify-center rounded-full shadow-glow z-10">
+                <item.icon className="w-6 h-6" />
+              </div>
 
-              <div
-                className={`flex flex-col md:flex-row gap-8 md:gap-20 items-stretch ${
-                  index % 2 === 0 ? "" : "md:flex-row-reverse"
-                }`}
-              >
-                {/* Desktop Icon Node */}
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 items-center justify-center w-16 h-16 bg-primary text-white z-10 shadow-glow border-[6px] border-surface transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-45">
-                  <item.icon className="h-6 w-6 group-hover:-rotate-45 transition-transform duration-500" />
-                </div>
-
-                {/* Mobile Icon */}
-                <div className="md:hidden flex items-center justify-center mb-2">
-                  <div className="w-12 h-12 bg-primary text-white flex items-center justify-center shadow-glow">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                </div>
-
-                {/* ===== Problem Card ===== */}
-                <Card className="flex-1 p-8 md:p-10 rounded-none bg-surface border border-primary-10 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-center">
-                  {/* Accent Line */}
-                  <div className="absolute top-0 left-0 w-1 h-full bg-accent-red/20" />
-
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="flex items-center justify-center w-8 h-8 bg-accent-red/10 text-accent-red rounded-none border border-accent-red/20">
-                      <X className="h-4 w-4" />
+              <div className="grid md:grid-cols-2 gap-10 items-stretch">
+                {/* PROBLEM — always LEFT */}
+                <Card className="p-8 border border-red-200/60 bg-white shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 flex items-center justify-center bg-red-50 text-red-600 rounded">
+                      <X className="w-4 h-4" />
                     </div>
-                    <span className="font-heading font-bold text-xs uppercase tracking-widest text-accent-red">
-                      The Problem
+                    <span className="text-sm font-heading font-bold uppercase tracking-widest text-red-600">
+                      Problem
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-heading font-bold mb-4 text-primary uppercase tracking-wide">
+                  <h3 className="text-xl font-heading font-bold mb-3">
                     {item.title}
                   </h3>
 
-                  <p className="text-primary-70 leading-relaxed font-light text-lg">
+                  <p className="text-muted-foreground text-xl leading-relaxed">
                     {item.problem}
                   </p>
                 </Card>
 
-                {/* ===== Solution Card ===== */}
-                <Card className="flex-1 p-8 md:p-10 rounded-none bg-primary text-white shadow-glow hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-center group/card">
-                  {/* Decorative Glow */}
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10" />
+                {/* SOLUTION — always RIGHT */}
+                <Card className="p-8 bg-primary text-white shadow-glow relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
 
-                  <div className="flex items-center gap-3 mb-5 relative z-10">
-                    <div className="flex items-center justify-center w-8 h-8 bg-white/10 text-white rounded-none border border-white/20">
-                      <Check className="h-4 w-4" />
+                  <div className="flex items-center gap-3 mb-4 relative z-10">
+                    <div className="w-8 h-8 flex items-center justify-center bg-white/10 rounded">
+                      <Check className="w-4 h-4" />
                     </div>
-                    <span className="font-heading font-bold text-xs uppercase tracking-widest text-white-70">
-                      The Solution
+                    <span className="text-sm font-heading font-bold uppercase tracking-widest text-white/70">
+                      TenderLink Solution
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-heading font-bold mb-4 text-white uppercase tracking-wide relative z-10">
-                    TenderLink Advantage
-                  </h3>
-
-                  <p className="text-white/80 leading-relaxed font-light text-lg relative z-10">
+                  <p className="text-xl leading-relaxed mb-5 relative z-10">
                     {item.solution}
                   </p>
 
-                  {/* Watermark Icon */}
-                  <item.icon className="absolute bottom-4 right-4 h-32 w-32 text-white/5 rotate-12 transition-transform duration-700 group-hover/card:rotate-0" />
+                  {/* Impact bullets */}
+                  <ul className="space-y-2 text-sm text-white/80 relative z-10">
+                    {item.impact.map((point, i) => (
+                      <li key={i} className="flex items-start gap-2 text-lg">
+                        <Check className="w-4 h-4 mt-0.5 text-sky-300" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Watermark icon */}
+                  <item.icon className="absolute bottom-3 right-3 w-24 h-24 text-white/5" />
                 </Card>
               </div>
             </div>
@@ -112,6 +94,4 @@ const MarketGapPage = () => {
       </div>
     </section>
   );
-};
-
-export default MarketGapPage;
+}

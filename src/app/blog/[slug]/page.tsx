@@ -45,7 +45,7 @@ export default async function BlogPostPage({
   }
 
   return (
-    <section className="py-20 md:py-32">
+    <section className="section">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Content */}

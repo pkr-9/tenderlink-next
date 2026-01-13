@@ -51,7 +51,7 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative border-t border-primary/5">
+    <section className="section bg-white relative border-t border-primary/5">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-20 animate-slide-up">
@@ -71,7 +71,7 @@ export const FAQ = () => {
                 key={index}
                 value={`item-${index}`}
                 // Chiseled Card Style
-                className="bg-white border border-primary/10 px-6 py-2 transition-all duration-300 hover:border-primary/40 hover:shadow-lg rounded-none animate-slide-up group"
+                className="bg-white border border-primary/10 rounded-xl px-6 py-2 transition-all duration-300 hover:border-primary/40 hover:shadow-lg animate-slide-up group"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">

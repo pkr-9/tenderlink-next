@@ -21,7 +21,7 @@
 
     /* Secondary / muted */
     --secondary: 210 40% 96.1%; /* very light muted surface */
-    --muted-foreground: 215.4 16.3% 46.9%; /* muted text color */
+    --muted-foreground: 215 14% 40%; /* muted text color */
 
     /* White / surfaces */
     --card: 0 0% 100%; /* card surface (white) */
@@ -88,6 +88,10 @@
    (Use these in components instead of hardcoded hex)
    ------------------------------------------------------------*/
 @layer utilities {
+  .section {
+    @apply py-24 md:py-32;
+  }
+
   /* Primary color utils */
   .bg-primary {
     background-color: hsl(var(--primary));

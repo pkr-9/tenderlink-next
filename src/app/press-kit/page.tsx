@@ -6,7 +6,7 @@ import { Download, Mail, Image as ImageIcon, Link } from "lucide-react";
 
 const PressKitPage = () => {
   return (
-    <section className="py-24 md:py-48">
+    <section className="section">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Page Title */}
         <div className="text-center mb-16 animate-slide-up">

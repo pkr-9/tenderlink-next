@@ -43,16 +43,9 @@ function FeatureCard({
   index: number;
 }) {
   const Icon = service.icon ?? (() => null);
-  const [saved, setSaved] = useState(false);
-  const prefersReducedMotion =
-    typeof window !== "undefined" && window.matchMedia
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
 
-  // accessible href fallback
   const href = service.href ?? `/services/${slug}`;
 
-  // Points: try service.points array; fallback to splitting summary into bullets
   const points: string[] =
     service.points?.slice(0, 3) ||
     (service.summary
@@ -74,21 +67,17 @@ function FeatureCard({
         className="glass-card h-full flex flex-col relative overflow-hidden"
         style={{ animationDelay: `${index * 80}ms` }}
       >
-        {/* Corner/Featured ribbon */}
+        {/* ⭐ Featured Star (top-right corner) */}
         {service.featured && (
-          <div
-            aria-hidden
-            className="absolute top-4 left-0 -translate-x-1/2 px-2 py-1 rounded-full text-[12px] font-semibold uppercase tracking-wider bg-gradient-to-r from-yellow-300 to-amber-400 text-slate-900 shadow-sm"
-            style={{ transform: "translateX(-20%) rotate(-15deg)" }}
-          >
-            Featured
+          <div className="absolute top-4 right-4 z-20">
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 drop-shadow-sm" />
           </div>
         )}
 
-        {/* Top row: icon, badges, save */}
-        <div className="flex items-start justify-between gap-4">
+        {/* Top row: icon + title + badges */}
+        <div className="flex items-start gap-4">
           <div className="flex items-center gap-4">
-            {/* Icon circle (gradient) */}
+            {/* Icon circle */}
             <div
               className="flex items-center justify-center w-12 h-12 rounded-lg"
               style={{
@@ -105,6 +94,7 @@ function FeatureCard({
               <h3 className="text-xl md:text-2xl font-heading font-bold leading-tight text-slate-900">
                 {service.title}
               </h3>
+
               <div className="flex gap-2 mt-1 flex-wrap">
                 {(service.badges ?? []).slice(0, 2).map((b: string) => (
                   <span
@@ -117,30 +107,13 @@ function FeatureCard({
               </div>
             </div>
           </div>
-
-          {/* Save button */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setSaved((s) => !s);
-              // TODO: hook analytics or persistence here
-            }}
-            aria-pressed={saved}
-            aria-label={saved ? "Saved" : "Save service"}
-            className="ml-auto p-2 rounded-md bg-white/90 text-slate-900 hover:bg-white shadow-sm focus:ring-2 focus:ring-primary"
-            title={saved ? "Saved" : "Save"}
-          >
-            <Bookmark className={`w-4 h-4 ${saved ? "text-primary" : ""}`} />
-          </button>
         </div>
 
-        {/* Body: bullets + metric row */}
+        {/* Body: bullet points */}
         <div className="mt-4 flex-1">
-          {/* bullet points (progressive disclosure) */}
-          {points && points.length > 0 ? (
-            <ul className="space-y-2 text-md text-slate-700 mb-4 list-inside">
-              {points.slice(0, 3).map((p: string, i: number) => (
+          {points.length > 0 ? (
+            <ul className="space-y-2 text-md text-slate-700 mb-4">
+              {points.map((p: string, i: number) => (
                 <li key={i} className="flex items-start gap-3">
                   <Star className="w-4 h-4 mt-1 text-primary/90 flex-shrink-0" />
                   <span className="leading-snug normal-case">{p.trim()}</span>
@@ -153,13 +126,12 @@ function FeatureCard({
             </p>
           )}
 
-          {/* Metrics / micro copy */}
+          {/* Metrics */}
           <div className="flex flex-wrap gap-2">
             {(service.metrics ?? []).slice(0, 3).map((m: any, idx: number) => (
               <div
                 key={idx}
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-sm font-semibold"
-                aria-hidden
               >
                 <span className="text-sm text-slate-600">{m.label}</span>
                 <span className="text-md">{m.value}</span>
@@ -168,21 +140,19 @@ function FeatureCard({
           </div>
         </div>
 
-        {/* Footer CTA area */}
+        {/* Footer CTA */}
         <div className="mt-6 flex items-center justify-between gap-4">
-          {/* Learn more indicator (card itself is link) */}
-          <span className="inline-flex items-center gap-3">
+          <span className="inline-flex items-center gap-1">
             <span className="text-[12px] font-bold uppercase tracking-widest text-slate-700">
               Learn More
             </span>
             <ArrowRight className="w-4 h-4 text-slate-700 group-hover:translate-x-1 transition-transform duration-200" />
           </span>
 
-          {/* Secondary actions as buttons (NOT links) */}
           <div className="flex items-center gap-3">
             <button
               onClick={(e) => {
-                e.preventDefault(); // prevent parent Link navigation
+                e.preventDefault();
                 e.stopPropagation();
                 window.location.href = `/services/${slug}/demo`;
               }}
@@ -197,7 +167,7 @@ function FeatureCard({
                 e.stopPropagation();
                 window.location.href = `/services/${slug}`;
               }}
-              className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary text-white text-md font-semibold"
+              className="inline-flex items-center px-3 py-1 rounded-full bg-primary text-white text-md font-semibold"
             >
               Open
             </button>
@@ -229,7 +199,7 @@ export const Features = ({
   return (
     <section
       id="features-services"
-      className={`px-6 py-24 bg-surface border-b border-primary-10 ${className}`}
+      className={`section px-6 bg-surface border-b border-primary-10 ${className}`}
     >
       <div className="container mx-auto px-4">
         {/* Header */}

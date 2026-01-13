@@ -5,14 +5,14 @@ import { Check, X, Phone, Clock, TrendingUp, Shield } from "lucide-react";
 
 const PricingPage = () => {
   return (
-    <section className="py-32 md:py-48 bg-surface">
+    <section className="section bg-surface">
       <div className="container mx-auto px-4">
         {/* ===== Header ===== */}
         <div className="text-center mb-14">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             Transparent <span className="text-primary">Pricing Plans</span>
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Simple pricing designed to help businesses win more tenders.
           </p>
         </div>
@@ -21,24 +21,24 @@ const PricingPage = () => {
         <div className="max-w-5xl mx-auto mb-14 grid md:grid-cols-3 gap-6 text-center">
           <div className="flex flex-col items-center gap-3">
             <Clock className="h-7 w-7 text-primary" />
-            <p className="font-semibold">Save 20+ hours per week</p>
-            <span className="text-sm text-muted-foreground">
+            <p className="font-semibold text-lg">Save 20+ hours per week</p>
+            <span className="text-md text-muted-foreground">
               Automated tender discovery & filtering
             </span>
           </div>
 
           <div className="flex flex-col items-center gap-3">
             <TrendingUp className="h-7 w-7 text-primary" />
-            <p className="font-semibold">Proven ROI Growth</p>
-            <span className="text-sm text-muted-foreground">
+            <p className="font-semibold text-lg">Proven ROI Growth</p>
+            <span className="text-md text-muted-foreground">
               Win more bids with real-time insights
             </span>
           </div>
 
           <div className="flex flex-col items-center gap-3">
             <Shield className="h-7 w-7 text-primary" />
-            <p className="font-semibold">14-Day Free Trial</p>
-            <span className="text-sm text-muted-foreground">
+            <p className="font-semibold text-lg">14-Day Free Trial</p>
+            <span className="text-md text-muted-foreground">
               No credit card required
             </span>
           </div>
@@ -63,14 +63,14 @@ const PricingPage = () => {
               <div className="p-8">
                 {/* Popular Badge */}
                 {plan.popular && (
-                  <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4">
+                  <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold mb-4">
                     MOST POPULAR
                   </span>
                 )}
 
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
 
-                <p className="text-muted-foreground text-sm mb-6 min-h-[40px]">
+                <p className="text-muted-foreground text-md mb-6 min-h-[40px]">
                   {plan.description}
                 </p>
 
@@ -79,7 +79,7 @@ const PricingPage = () => {
                   <span className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </span>
-                  <span className="text-muted-foreground text-sm">
+                  <span className="text-muted-foreground text-md">
                     /{plan.period}
                   </span>
                 </div>
@@ -88,10 +88,10 @@ const PricingPage = () => {
                 <Button
                   asChild
                   size="lg"
-                  className={`w-full mb-8 ${
+                  className={`w-full text-lg mb-8 ${
                     plan.popular
                       ? "bg-primary text-white hover:bg-primary/90"
-                      : "bg-secondary hover:bg-secondary/80"
+                      : "bg-secondary text-primary hover:bg-secondary/80"
                   }`}
                 >
                   <a href="/contact">
@@ -101,7 +101,7 @@ const PricingPage = () => {
 
                 {/* Features */}
                 <div className="space-y-4">
-                  <p className="text-sm font-semibold text-foreground">
+                  <p className="text-md font-semibold text-foreground">
                     What’s included:
                   </p>
 
@@ -118,7 +118,7 @@ const PricingPage = () => {
                       )}
 
                       <span
-                        className={`text-sm ${
+                        className={`text-md ${
                           feature.included
                             ? "text-foreground"
                             : "text-muted-foreground line-through"
@@ -139,13 +139,13 @@ const PricingPage = () => {
           <h3 className="text-2xl font-bold mb-3">
             Need a Custom Enterprise Solution?
           </h3>
-          <p className="text-white/80 mb-6">
+          <p className="text-white/80 mb-6 text-lg">
             API access, white-label platforms, or multi-team deployments.
           </p>
           <Button
             variant="secondary"
             size="lg"
-            className="text-primary"
+            className="text-primary text-lg"
             asChild
           >
             <a href="tel:+917774911330">

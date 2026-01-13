@@ -1,6 +1,6 @@
 const PrivacyPolicyPage = () => {
   return (
-    <section className="py-24 md:py-48">
+    <section className="section">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="animate-slide-up">
           {/* Page Title */}

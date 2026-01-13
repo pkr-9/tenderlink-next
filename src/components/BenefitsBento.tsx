@@ -67,7 +67,7 @@ const benefits = [
 
 export function BenefitsBento() {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="section bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-14">

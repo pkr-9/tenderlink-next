@@ -45,7 +45,7 @@ export default async function LocationPage({
   }
 
   return (
-    <div className="min-h-screen pt-10 pb-20">
+    <div className="min-h-screen section">
       {/* Hero Section */}
       <div className="container mx-auto px-4 mb-16">
         <div className="max-w-4xl mx-auto text-center animate-slide-up">
