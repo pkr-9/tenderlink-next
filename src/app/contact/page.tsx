@@ -25,7 +25,7 @@ const ContactPage = () => {
             {contactData.offices.map((office, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative"
+                className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative border rounded-xl"
               >
                 {/* Map Container with Overlay Effect */}
                 <div className="h-80 w-full relative overflow-hidden">

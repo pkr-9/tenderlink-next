@@ -64,7 +64,7 @@ export default function HowItWorksPage() {
           {/* RIGHT — Sticky CTA */}
           <div className="hidden lg:block">
             <div className="sticky top-28">
-              <Card className="p-8 bg-primary text-white shadow-glow">
+              <Card className="p-8 bg-primary text-white shadow-glow border rounded-xl">
                 <h4 className="text-xl font-heading font-bold mb-3">
                   Need help setting up your profile?
                 </h4>
@@ -75,7 +75,7 @@ export default function HowItWorksPage() {
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white text-primary rounded-md font-semibold"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white text-primary rounded-xl font-semibold"
                 >
                   <Phone className="w-4 h-4" />
                   Contact Us
@@ -85,7 +85,7 @@ export default function HowItWorksPage() {
                   Free profile setup assistance included in all plans.
                 </p>
               </Card>
-              <div className="mt-0">
+              <div className="mt-0 border rounded-xl">
                 <TrustStrip
                   title="Recognized under Startup India & DPIIT"
                   logos={[

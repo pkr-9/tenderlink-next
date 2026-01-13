@@ -38,7 +38,7 @@ export default function MarketGapPage() {
 
               <div className="grid md:grid-cols-2 gap-10 items-stretch">
                 {/* PROBLEM — always LEFT */}
-                <Card className="p-8 border border-red-200/60 bg-white shadow-sm">
+                <Card className="p-8 border border-red-200/60 bg-white shadow-sm border rounded-xl">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-8 h-8 flex items-center justify-center bg-red-50 text-red-600 rounded">
                       <X className="w-4 h-4" />
@@ -58,7 +58,7 @@ export default function MarketGapPage() {
                 </Card>
 
                 {/* SOLUTION — always RIGHT */}
-                <Card className="p-8 bg-primary text-white shadow-glow relative overflow-hidden">
+                <Card className="p-8 bg-primary text-white shadow-glow relative overflow-hidden border rounded-xl">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
 
                   <div className="flex items-center gap-3 mb-4 relative z-10">
