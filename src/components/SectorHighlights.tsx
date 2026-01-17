@@ -10,9 +10,12 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Briefcase,
+  Landmark,
+  Sprout,
+  Factory,
 } from "lucide-react";
 import Link from "next/link";
-
 import {
   Carousel,
   CarouselContent,
@@ -22,35 +25,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-/* ---------- Sector Data with single `categories` array (≈10 items each) ---------- */
 const sectors = [
-  {
-    id: "construction",
-    icon: HardHat,
-    title: "Construction & Infra",
-    count: "12k+ Tenders",
-    tag: "High Volume",
-    gradient: "linear-gradient(135deg,#1F1E5E 0%,#2F2FA2 100%)",
-    pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 12px)",
-    categories: [
-      { key: "roads", label: "Roads", count: "3.2k" },
-      { key: "bridges", label: "Bridges", count: "2.1k" },
-      { key: "urban", label: "Urban Dev", count: "1.5k" },
-      { key: "metro", label: "Metro Projects", count: "980" },
-      { key: "airports", label: "Airports", count: "740" },
-      { key: "housing", label: "Housing", count: "1.1k" },
-      { key: "tunnels", label: "Tunnels", count: "420" },
-      { key: "coastal", label: "Coastal Works", count: "310" },
-      { key: "drainage", label: "Drainage", count: "560" },
-      { key: "public-buildings", label: "Public Buildings", count: "870" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "NH-48 Highway Expansion", value: "₹124 Cr" },
-      { id: 2, title: "Smart City Drainage Project", value: "₹52 Cr" },
-    ],
-  },
-
   {
     id: "it",
     icon: Monitor,
@@ -59,25 +34,201 @@ const sectors = [
     tag: "Trending",
     gradient: "linear-gradient(135deg,#4F46E5 0%,#2563EB 100%)",
     pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
+      "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)",
     categories: [
-      { key: "saas", label: "SaaS", count: "2.4k" },
-      { key: "hardware", label: "Hardware", count: "1.8k" },
-      { key: "cloud", label: "Cloud", count: "1.2k" },
-      { key: "cyber", label: "Cybersecurity", count: "980" },
-      { key: "ai", label: "AI / ML", count: "640" },
-      { key: "data-centers", label: "Data Centers", count: "480" },
-      { key: "networking", label: "Networking", count: "530" },
-      { key: "managed", label: "Managed Services", count: "410" },
-      { key: "support", label: "IT Support", count: "720" },
-      { key: "mobile", label: "Mobile Apps", count: "360" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "Government ERP System Upgrade", value: "₹18 Cr" },
-      { id: 2, title: "State Cloud Migration Project", value: "₹9 Cr" },
+      "Web Development",
+      "Mobile Apps",
+      "SEO Services",
+      "Data Entry",
+      "Computer AMC",
+      "IT Support",
+      "Website Redesign",
+      "Digital Marketing",
+      "Network Installation",
+      "CCTV Surveillance",
+      "Software Licensing",
+      "Biometric Systems",
+      "Hardware Supply",
+      "Server Mgmt",
+      "ERP Implementation",
+      "Custom Software",
+      "Cloud Migration",
+      "Cybersecurity",
+      "Blockchain",
+      "Data Centers",
     ],
   },
-
+  {
+    id: "construction",
+    icon: HardHat,
+    title: "Construction",
+    count: "12k+ Tenders",
+    tag: "High Volume",
+    gradient: "linear-gradient(135deg,#1F1E5E 0%,#2F2FA2 100%)",
+    pattern:
+      "repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 12px)",
+    categories: [
+      "Painting Works",
+      "Road Repair",
+      "Plumbing",
+      "Electrical Repairs",
+      "Fencing",
+      "Landscaping",
+      "Waterproofing",
+      "School Renovation",
+      "Boundary Walls",
+      "Interior Design",
+      "Canal Lining",
+      "Rural Roads",
+      "Drainage Systems",
+      "Water Tanks",
+      "Public Buildings",
+      "Bridges",
+      "Highways",
+      "Metro Rail",
+      "Tunnels",
+    ],
+  },
+  {
+    id: "finance",
+    icon: Landmark,
+    title: "Banking & Finance",
+    count: "4k+ Tenders",
+    tag: "High Value",
+    gradient: "linear-gradient(135deg,#0F766E 0%,#14B8A6 100%)",
+    pattern:
+      "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 2px, transparent 2px, transparent 12px)",
+    categories: [
+      "Auditing Services",
+      "Tax Consultancy",
+      "Insurance Services",
+      "Accounting",
+      "Payroll Mgmt",
+      "Background Checks",
+      "Debt Recovery",
+      "Cash Van Services",
+      "ATM Maintenance",
+      "Banking Software",
+      "Forensic Audit",
+      "Actuarial Services",
+      "Investment Advisory",
+      "Core Banking Solutions",
+      "Fintech Integration",
+    ],
+  },
+  {
+    id: "agriculture",
+    icon: Sprout,
+    title: "Agriculture",
+    count: "3.2k+ Tenders",
+    tag: "Essential",
+    gradient: "linear-gradient(135deg,#166534 0%,#22C55E 100%)",
+    pattern: "radial-gradient(rgba(255,255,255,0.1) 8%, transparent 8%)",
+    categories: [
+      "Seeds Supply",
+      "Fencing Wire",
+      "Fertilizers",
+      "Pesticide Spraying",
+      "Tractor Hiring",
+      "Land Levelling",
+      "Tree Plantation",
+      "Nursery Mgmt",
+      "Irrigation Pipes",
+      "Pump Sets",
+      "Greenhouse Setup",
+      "Soil Testing",
+      "Cold Storage",
+      "Drip Irrigation",
+      "Organic Certification",
+      "Food Processing Units",
+      "Dairy Equipment",
+    ],
+  },
+  {
+    id: "manufacturing",
+    icon: Factory,
+    title: "Manufacturing",
+    count: "7k+ Tenders",
+    tag: "Industrial",
+    gradient: "linear-gradient(135deg,#7C2D12 0%,#EA580C 100%)",
+    pattern:
+      "repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 10px)",
+    categories: [
+      "School Uniforms",
+      "Office Furniture",
+      "Hand Tools",
+      "Stationery",
+      "Safety Shoes",
+      "Signage Boards",
+      "Textiles",
+      "PVC Pipes",
+      "Steel Racks",
+      "Spare Parts",
+      "Machinery Supply",
+      "Lab Equipment",
+      "Prefab Shelters",
+      "Defense Components",
+      "Industrial Pumps",
+      "Conveyor Belts",
+      "Heavy Fabrications",
+      "Transformers",
+    ],
+  },
+  {
+    id: "logistics",
+    icon: Truck,
+    title: "Logistics",
+    count: "9k+ Tenders",
+    tag: "Popular",
+    gradient: "linear-gradient(135deg,#06B6D4 0%,#14B8A6 100%)",
+    pattern:
+      "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+    categories: [
+      "Car Hiring",
+      "Jeep/Taxi Rental",
+      "Courier Services",
+      "Office Shifting",
+      "Manpower Supply",
+      "Water Tanker",
+      "Bus Contracts",
+      "Waste Disposal",
+      "Loading/Unloading",
+      "Packaging",
+      "Fleet Mgmt",
+      "Warehousing",
+      "Cold Chain",
+      "Inventory Software",
+      "Freight Forwarding",
+      "Port Handling",
+    ],
+  },
+  {
+    id: "health",
+    icon: HeartPulse,
+    title: "Healthcare",
+    count: "6k+ Tenders",
+    tag: "Critical",
+    gradient: "linear-gradient(135deg,#DC2626 0%,#991B1B 100%)",
+    pattern: "radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)",
+    categories: [
+      "Gloves & Masks",
+      "Laundry",
+      "Cleaning",
+      "Food Supply",
+      "Generic Medicines",
+      "Surgicals",
+      "Ambulance Hiring",
+      "Lab Reagents",
+      "Diagnostic Kits",
+      "Bed Linen",
+      "Furniture",
+      "Bio-Waste Mgmt",
+      "X-Ray Machines",
+      "Medical AMC",
+      "Oxygen Plants",
+      "MRI Scanners",
+    ],
+  },
   {
     id: "energy",
     icon: Zap,
@@ -86,74 +237,24 @@ const sectors = [
     tag: "Green Growth",
     gradient: "linear-gradient(135deg,#2563EB 0%,#06B6D4 100%)",
     pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
+      "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,255,255,0.05) 20px)",
     categories: [
-      { key: "solar", label: "Solar", count: "1.9k" },
-      { key: "wind", label: "Wind", count: "1.1k" },
-      { key: "hydro", label: "Hydro", count: "640" },
-      { key: "battery", label: "Battery Storage", count: "520" },
-      { key: "grid", label: "Power Grid", count: "860" },
-      { key: "transmission", label: "Transmission Lines", count: "420" },
-      { key: "substations", label: "Substations", count: "380" },
-      { key: "biomass", label: "Biomass", count: "210" },
-      { key: "ev-charging", label: "EV Charging", count: "300" },
-      { key: "energy-audit", label: "Energy Audits", count: "170" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "500MW Solar Plant Development", value: "₹210 Cr" },
-      { id: 2, title: "National Grid Upgrade Contract", value: "₹95 Cr" },
-    ],
-  },
-
-  {
-    id: "health",
-    icon: HeartPulse,
-    title: "Healthcare & Pharma",
-    count: "6k+ Tenders",
-    tag: "Critical",
-    gradient: "linear-gradient(135deg,#2F2FA2 0%,#4F46E5 100%)",
-    pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 12px)",
-    categories: [
-      { key: "equipment", label: "Medical Equipment", count: "2.1k" },
-      { key: "drugs", label: "Pharmaceuticals", count: "1.7k" },
-      { key: "labs", label: "Lab Services", count: "1.1k" },
-      { key: "ambulance", label: "Ambulance Services", count: "480" },
-      { key: "hospital-build", label: "Hospital Construction", count: "380" },
-      { key: "consumables", label: "Consumables", count: "920" },
-      { key: "diagnostic", label: "Diagnostic Services", count: "610" },
-      { key: "vaccines", label: "Vaccines", count: "350" },
-      { key: "health-it", label: "IT in Healthcare", count: "240" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "AIIMS MRI Procurement", value: "₹42 Cr" },
-      { id: 2, title: "State Vaccine Supply Contract", value: "₹68 Cr" },
-    ],
-  },
-  {
-    id: "logistics",
-    icon: Truck,
-    title: "Logistics & Supply",
-    count: "9k+ Tenders",
-    tag: "Popular",
-    gradient: "linear-gradient(135deg,#06B6D4 0%,#14B8A6 100%)",
-    pattern:
-      "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 12px)",
-    categories: [
-      { key: "freight", label: "Freight", count: "3.4k" },
-      { key: "warehouse", label: "Warehousing", count: "2.2k" },
-      { key: "fleet", label: "Fleet Mgmt", count: "1.3k" },
-      { key: "cold", label: "Cold Chain", count: "860" },
-      { key: "port", label: "Port Services", count: "420" },
-      { key: "last-mile", label: "Last-Mile", count: "980" },
-      { key: "courier", label: "Courier", count: "600" },
-      { key: "packaging", label: "Packaging", count: "340" },
-      { key: "inventory", label: "Inventory Software", count: "290" },
-      { key: "terminal", label: "Terminal Ops", count: "210" },
-    ],
-    sampleTenders: [
-      { id: 1, title: "Indian Rail Freight Handling", value: "₹74 Cr" },
-      { id: 2, title: "State Warehouse Automation", value: "₹29 Cr" },
+      "Street Lights",
+      "Generator AMC",
+      "LED Supply",
+      "Cabling",
+      "Solar Heaters",
+      "Meter Reading",
+      "Earthing",
+      "Rooftop Solar",
+      "Transformer Repair",
+      "Substations",
+      "Energy Audits",
+      "EV Charging",
+      "Battery Storage",
+      "Transmission",
+      "Solar Parks",
+      "Hydro Plants",
     ],
   },
 ];
@@ -161,84 +262,73 @@ const sectors = [
 /* ---------- Utility ---------- */
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-/* ---------- Sector Card (uses single `categories`) ---------- */
+/* ---------- Sector Card ---------- */
 function SectorCard({ sector }: { sector: (typeof sectors)[number] }) {
   const Icon = sector.icon;
 
   return (
-    <article className="h-full rounded-2xl overflow-hidden relative shadow-xl hover:-translate-y-2 transition-transform duration-300">
-      {/* Background */}
+    <article className="h-full rounded-3xl overflow-hidden relative shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 group border border-white/10 flex flex-col">
+      {/* Backgrounds */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
         style={{ background: sector.gradient }}
       />
       <div
-        className="absolute inset-0 opacity-30"
-        style={{ backgroundImage: sector.pattern }}
+        className="absolute inset-0 opacity-20"
+        style={{ backgroundImage: sector.pattern, backgroundSize: "20px 20px" }}
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between p-6 text-white">
+      {/* Content Container */}
+      <div className="relative z-10 h-full flex flex-col p-7">
         {/* Header */}
-        <div className="flex justify-between items-start">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center">
-              <Icon className="w-6 h-6" />
+        <div className="flex justify-between items-start mb-6">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-inner">
+              <Icon className="w-7 h-7 text-white drop-shadow-md" />
             </div>
             <div>
-              <p className="text-sm uppercase font-semibold text-white/80">
+              <p className="text-xs uppercase font-bold tracking-wider text-white/70 mb-1">
                 {sector.tag}
               </p>
-              <h3 className="text-xl font-bold">{sector.title}</h3>
+              <h3 className="text-2xl font-bold text-white tracking-tight leading-none">
+                {sector.title}
+              </h3>
             </div>
           </div>
-
-          <span className="-mx-2 px-2 py-1 rounded-full bg-white/15 text-sm font-bold">
+          <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold text-white border border-white/10">
             {sector.count}
           </span>
         </div>
 
-        {/* === CATEGORY CAPSULES (single `categories` list) === */}
-        <div className="mt-4">
-          <div className="flex flex-wrap gap-2 py-2">
-            {sector.categories.slice(0, 10).map((cat) => (
-              <button
-                key={cat.key}
-                className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[16px] font-medium whitespace-nowrap hover:bg-white/16 transition"
-                aria-label={`${cat.label} — ${cat.count}`}
+        {/* === FIXED CATEGORIES === */}
+        <div className="flex-1">
+          <div className="flex flex-wrap gap-2 content-start">
+            {sector.categories.slice(0, 15).map((cat, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white/10 border border-white/5 text-[13px] font-medium text-white/90 backdrop-blur-sm hover:bg-white/20 transition-colors cursor-default"
               >
-                <span className="font-semibold text-white">{cat.label}</span>
-                <span className="text-[14px] text-white/80">· {cat.count}</span>
-              </button>
+                {cat}
+              </span>
             ))}
-          </div>
-
-          {/* Sample tenders */}
-          <div className="mt-3 space-y-1 text-sm text-white/90">
-            {sector.sampleTenders.map((t) => (
-              <p key={t.id}>
-                {t.title} — <span className="font-semibold">{t.value}</span>
-              </p>
-            ))}
+            {/* "More..." Button automatically appended */}
+            <Link
+              href={`/sectors/${slug(sector.title)}`}
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-white/20 border border-white/10 text-[13px] font-bold text-white backdrop-blur-sm hover:bg-white hover:text-primary transition-colors cursor-pointer"
+            >
+              More...
+            </Link>
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-5 flex justify-between items-center">
+        {/* Footer Area - Just the Button now */}
+        <div className="mt-8">
           <Link
             href={`/sectors/${slug(sector.title)}`}
-            className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-4 py-2 text-sm font-semibold"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-white text-slate-950 px-6 py-4 text-sm font-bold uppercase tracking-wide hover:bg-slate-50 transition-colors shadow-lg"
           >
-            View Tenders
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-
-          <Link
-            href={`/sectors/${slug(sector.title)}#sample`}
-            className="text-sm underline underline-offset-2"
-          >
-            Sample contracts
+            Explore {sector.title} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -253,75 +343,67 @@ export const SectorHighlights = () => {
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 },
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  const autoplay = isVisible
-    ? Autoplay({
-        delay: 3500,
-        stopOnMouseEnter: true,
-        stopOnInteraction: true,
-      })
-    : false;
+  const autoplay = React.useMemo(() => {
+    if (!isVisible) return null;
+    return Autoplay({
+      delay: 4000,
+      stopOnMouseEnter: true,
+      stopOnInteraction: false,
+    });
+  }, [isVisible]);
 
   return (
     <section
       ref={sectionRef}
-      className="section bg-surface border-b border-primary-10"
+      className="section bg-surface border-b border-primary-10 overflow-hidden"
     >
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary">
-            Explore Opportunities <br />
-            <span className="gradient-text">By Industry</span>
+        <div className="text-center mb-16 animate-slide-up">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
+            <Briefcase className="w-4 h-4" />
+            <span>Discover Opportunities</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-heading font-bold text-primary mb-6">
+            Find Tenders by <span className="gradient-text">Sector</span>
           </h2>
-          <p className="text-muted-foreground mt-4 text-2xl">
-            Discover major tender categories instantly. Browse deeper when
-            needed.
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
+            From local maintenance contracts to massive infrastructure projects.
+            <br className="hidden md:block" />
+            We categorize them for your convenience.
           </p>
         </div>
 
         {/* Carousel */}
         <Carousel
           opts={{ align: "start", loop: true }}
-          plugins={isVisible && autoplay ? [autoplay] : []}
+          plugins={autoplay ? [autoplay] : []}
+          className="w-full max-w-[1400px] mx-auto"
         >
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="-ml-6">
             {sectors.map((sector) => (
+              // Reduced height to 420px
               <CarouselItem
                 key={sector.id}
-                className="pl-4 md:basis-1/2 lg:basis-1/3 h-[400px] md:h-[460px] lg:h-[500px]"
+                className="pl-6 md:basis-1/2 lg:basis-1/2 xl:basis-1/2 h-[420px]"
               >
                 <SectorCard sector={sector} />
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <CarouselPrevious
-            className="-left-4 hidden md:flex items-center justify-center h-12 w-12 rounded-full bg-white/10 text-white hover:bg-white hover:text-slate-900 transition-all shadow"
-            aria-label="Previous sector"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </CarouselPrevious>
-          <CarouselNext
-            className="-right-4 hidden md:flex items-center justify-center h-12 w-12 rounded-full bg-white/10 text-white hover:bg-white hover:text-slate-900 transition-all shadow"
-            aria-label="Next sector"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </CarouselNext>
+          {/* Navigation Controls */}
+          <div className="flex justify-center gap-4 mt-6">
+            <CarouselPrevious className="static transform-none translate-y-0 h-14 w-14 rounded-full border-2 border-primary/10 hover:bg-primary hover:text-white transition-all" />
+            <CarouselNext className="static transform-none translate-y-0 h-14 w-14 rounded-full border-2 border-primary/10 hover:bg-primary hover:text-white transition-all" />
+          </div>
         </Carousel>
       </div>
     </section>

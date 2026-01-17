@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight, Bookmark, Star } from "lucide-react";
+import { ArrowRight, CircleSmall, Star } from "lucide-react";
 import { servicesData } from "@/data/servicesData";
 
 interface FeaturesProps {
@@ -115,7 +115,7 @@ function FeatureCard({
             <ul className="space-y-2 text-md text-slate-700 mb-4">
               {points.map((p: string, i: number) => (
                 <li key={i} className="flex items-start gap-3">
-                  <Star className="w-4 h-4 mt-1 text-primary/90 flex-shrink-0" />
+                  {/* <CircleSmall className="w-4 h-4 mt-1 text-primary/90 flex-shrink-0" /> */}
                   <span className="leading-snug normal-case">{p.trim()}</span>
                 </li>
               ))}

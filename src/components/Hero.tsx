@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative bg-primary overflow-hidden py-8"
+      className="relative bg-primary overflow-hidden"
       aria-label="Hero section"
     >
       {/* Soft color accents (reduced size + opacity) */}
